@@ -1,0 +1,172 @@
+
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    ThirdWindow:
+    FourthWindow:
+    FifthWindow:
+<MainWindow>:
+    name:"main" 
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:5
+            Label:
+                text:'2- Choose what do you want?'
+                size_hint:(0.1,0.3)
+                font_size: 40
+                
+            Button:
+                text:'Type a message >>> '
+                size_hint:(0.1,0.1)
+                on_release: 
+                    app.root.current = 'fifth'
+            Button:
+                text:'1- Generate a random Librrary file. (Key #1)'
+                size_hint:(0.1,0.1)
+                on_release: 
+                    app.root.current = 'second'
+
+            Button:
+                text:'3- Encrypt  the message Above .'
+                size_hint:(0.1,0.1)
+                on_release: 
+                    app.root.current = 'third'
+
+            Button:
+                text:'4- Decrypt the message.'
+                size_hint:(0.1,0.1)
+                on_release: 
+                    app.root.current = 'fourth'
+            
+                
+<SecondWindow>:
+    generate:Generate
+    back_win2:Back_win2
+    name: "second"
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:3
+            Label:
+                text: 'Random letter Generator'
+                font_size: 40
+            
+            Button:
+                id: Generate
+                text:'Generate'
+                size_hint:(0.1,0.1)
+                
+                on_release:
+                    root.gen()
+                     
+            Button:
+                id: Back_win2
+                text:'Back'
+                size_hint:(0.1,0.1)
+                
+                on_release: 
+                    app.root.current = 'main'
+                    
+<ThirdWindow>:
+    encrypt_button:Encrypt_button
+    back_win3:Back_win3
+    name: "third"
+   
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:4
+            Label:
+                text: 'ENCRYPTOR'
+                font_size: 40
+
+            TextInput:
+                id:password
+                text:'Type the password (key #2).'
+                size_hint:(0.1,0.1)
+                multiline:False
+                
+            Button:
+                id: Encrypt_button
+                text:'Encrypt'
+                size_hint:(0.1,0.1)
+                on_press:
+                    root.enc(password.text)
+                
+
+            Button:
+                id: Back_win3
+                text:'Back'
+                size_hint:(0.1,0.1)
+                on_release: 
+                    app.root.current = 'main'
+                    password.text = "Type password."
+                    
+
+<FourthWindow>:
+    decrypt_button:Decrypt_button
+    password_input:Password_input
+    back_win4:Back_win4
+    name: "fourth"
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:4
+            Label:
+                text: 'DE-CRYPTOR'
+                font_size: 40
+            TextInput:
+                id:Password_input
+                text:'Type password (key #2).'
+                
+                size_hint:(0.1,0.1)
+            
+            
+                
+            Button:
+                id: Decrypt_button
+                text:'De-crypt'
+                size_hint:(0.1,0.1)
+                on_press:
+                    root.de_enc()
+                    
+                    
+            Button:
+                id: Back_win4
+                text:'Back'
+                size_hint:(0.1,0.1)
+                on_release: 
+                    app.root.current = 'main'
+                    Password_input.text = "Type password."
+                    
+<FifthWindow>:
+    
+    name: "fifth"
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows:4
+            Label:
+                text: 'DE-CRYPTOR'
+                font_size: 40
+            TextInput:
+                id:Message_input
+                text:''
+                
+                size_hint:(0.2,0.2)           
+                
+            Button:
+                id: Save_button
+                text:'Save The Message Above (to a file). '
+                size_hint:(0.1,0.1)
+                on_press:
+                    root.Savetoplain(Message_input.text)
+                    
+            Button:
+                id: Back_win4
+                text:'Back'
+                size_hint:(0.1,0.1)
+                on_release: 
+                    app.root.current = 'main'
+                    
